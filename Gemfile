@@ -22,6 +22,7 @@ gem 'flexslider'
 gem "breadcrumbs_on_rails"
 gem 'friendly_id', '~> 5.0.0'
 gem 'meta-tags'
+
 gem 'rack-mini-profiler', require: false
 
 group :production do

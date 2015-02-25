@@ -1,0 +1,37 @@
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#itemdetails" aria-controls="ongoing" role="tab" data-toggle="tab">Item Details</a></li>
+    <li role="presentation"><a href="#shippingpolicy" aria-controls="complete" role="tab" data-toggle="tab">Shipping Rates & Policies</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="itemdetails">
+      <div class="description-box">
+        <%= @listing.description.html_safe %>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="shippingpolicy">
+      <div class="description-box">
+        
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Ships To</th>
+              <th>Cost (RM)</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @shiplocations.each do |shiplocation| %>
+              <tr>
+                <td><%= shiplocation.country %></td>
+                <td><%= number_with_precision(shiplocation.cost, precision: 2) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

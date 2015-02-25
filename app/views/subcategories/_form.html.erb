@@ -1,0 +1,25 @@
+<%= simple_form_for(@subcategory) do |f| %>
+  <% if @subcategory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subcategory.errors.count, "error") %> prohibited this subcategory from being saved:</h2>
+
+      <ul>
+      <% @subcategory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.input :name, label: 'Subcategory Name', input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.association :category, label: 'Belongs To', prompt: 'Select Category', input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

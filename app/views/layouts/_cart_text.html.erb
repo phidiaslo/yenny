@@ -1,0 +1,6 @@
+<%= link_to cart_path  do %>
+  <% if current_order.order_items.present? %>
+  <span class="badge"><%= current_order.order_items.size %></span>
+  <% end %>
+  Cart ( <%= number_to_currency current_order.subtotal %> )  
+<% end %>

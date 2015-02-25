@@ -1,0 +1,55 @@
+<% title 'Manage Items' %>
+<% noindex %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="listing-wrapper">
+        <% if @listings.blank? %>
+          <center>
+            <h1>Stock Your Shop & Start Selling</h1>
+            <p><small>Add as many items as you can — 10 or more would be awesome. More items = more chances to  get discovered!</small></p>
+           
+            <%= link_to 'Add Item Now', new_listing_path, class: "btn btn-primary" %>
+          </center>
+        <% else %>
+        <h1>Stock Your Items <small><%= link_to 'Add Item +', new_listing_path %></small></h1>
+        <p><small>Add as many items as you can — 10 or more would be awesome. More items = more chances to get discovered!</small></p>
+        
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Item Name</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @listings.each do |listing| %>
+              <tr>
+                <td>
+                  <% @images.where(listing_id: listing).first(1).each do |image| %>
+                    <%= link_to image_tag(image.photo.url(:thumb)), listing %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= listing.name %>
+                  <span class="second-text"><%= "#{number_with_precision(listing.price, precision: 2)} MYR" %>, Stock: <%= listing.quantity %></span>
+                </td>
+ 
+                <td><%= link_to 'Show', listing %></td>
+                <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+                <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% end %>
+      </div>
+    </div>
+	<div class="col-md-3 right-sidebar">
+	    <%= render 'dashboard/sidebar' %>
+	</div>
+  </div>
+</div>

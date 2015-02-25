@@ -1,0 +1,32 @@
+<div class="top-section">
+  <div class="container">
+    <h1>Search Result</h1>
+    <p class="sub-head">We found <%= @listings.count %> items from your search terms!</p>
+  </div>
+</div>
+<div class="container no-left-right-pad">
+<section id="pin-grid" class="test">
+<% @listings.each do |listing| %>
+  <div class="white-panel">
+    <% @images.where(listing_id: listing).first(1).each do |image| %>
+      <%= link_to image_tag(image.photo.url), listing %>
+    <% end %>
+    <div class="caption">
+      <%= link_to "#{listing.name.truncate(30)}", listing %><br>
+      <p><%= listing.user.username %> <span class="listing-price"><%= "RM #{number_with_precision(listing.price, precision: 2)}" %></span></p>
+    </div>
+   </div>
+<% end %>
+</section>
+</div>
+<script>
+$(document).ready(function() {
+$('#pin-grid').pinterest_grid({
+no_columns: 4,
+padding_x: 30,
+padding_y: 30,
+margin_bottom: 50,
+single_column_breakpoint: 700
+});
+});
+</script>

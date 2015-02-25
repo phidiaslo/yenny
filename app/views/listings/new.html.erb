@@ -1,0 +1,37 @@
+<% title 'List an item' %>
+<% noindex %>
+<div class="top-section margin-bottom-0">
+  <div class="container">
+    <h1>List an Item</h1>
+    <p class="sub-head">Complete all the information below</p>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="row">
+  <div class="col-md-9">
+    <%= render 'form' %>
+  </div>
+  <div class="col-md-3">
+  
+  </div>
+</div>
+
+<%= link_to 'Back', listings_path %>
+
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#categories_select').change(function() {
+      $.ajax({
+        url: "<%= update_subcategories_path %>",
+        data: {
+          category_id : $('#categories_select').val()
+        },
+        dataType: "script"
+      });
+    });
+  });
+</script>

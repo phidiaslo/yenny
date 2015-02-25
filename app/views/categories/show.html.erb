@@ -1,0 +1,35 @@
+<% title "#{@category.name}" %>
+<div class="top-section">
+  <div class="container">
+    <h1><%= @category.name %></h1>
+  </div>
+</div>
+
+<div class="container no-left-right-pad">
+<section id="pin-grid-3" class="test">
+<% @subcategories.each do |subcategory| %>
+  <div class="white-panel">
+    <% @listings.where(subcategory_id: subcategory).first(1).each do |listing| %>
+	    <% @images.where(listing_id: listing).first(1).each do |image| %>
+	      <%= link_to image_tag(image.photo.url), subcategory %>
+	    <% end %>
+    <% end %>
+    <div class="caption">
+      <%= link_to "#{subcategory.name}", subcategory %>
+    </div>
+  </div>
+<% end %>
+</section>
+</div>
+
+<script>
+$(document).ready(function() {
+$('#pin-grid-3').pinterest_grid({
+no_columns: 3,
+padding_x: 30,
+padding_y: 30,
+margin_bottom: 50,
+single_column_breakpoint: 700
+});
+});
+</script>

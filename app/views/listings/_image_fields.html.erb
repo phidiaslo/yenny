@@ -1,0 +1,10 @@
+<div class="form-group">
+  <div class="nested-fields row">
+    <div class="col-md-10">
+      <%= f.input :photo, label: false, input_html: {class: "form-control input-sm"} %>
+    </div>
+    <div class="col-md-2 padding-3">
+      <%= link_to_remove_association "Remove", f %>
+    </div>
+  </div>
+</div>

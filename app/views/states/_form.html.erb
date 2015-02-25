@@ -1,0 +1,11 @@
+<%= simple_form_for(@state) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-group">
+    <%= f.input :name, label: 'State Name', input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

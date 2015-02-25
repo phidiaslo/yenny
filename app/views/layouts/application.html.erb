@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--<title>Malaysia's Favorite Buy & Sell Online Marketplace</title>-->
+  <%= display_meta_tags :site => '' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <script src="pinterest_grid.js"></script>
+</head>
+<body>
+<div class="content-container">
+<%= render 'layouts/header' %>
+<%= render 'layouts/notification' %>
+<%= yield %>
+<%= render 'layouts/footer' %>
+</div>
+</body>
+</html>

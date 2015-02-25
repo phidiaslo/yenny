@@ -1,0 +1,16 @@
+<ul>
+  <li><h5>Manage Shop</h5></li>
+    <li><%= link_to "Sales", customer_orders_path %></li>
+	<li><%= link_to "Revenues", revenues_path %></li>
+	<li><%= link_to "Items List", items_path %></li>
+  <br>
+  <% if current_user.role == 'Admin' %>
+  <li><h5>Administration</h5></li>
+  <li><%= link_to "Users", users_path %></li>
+	<li><%= link_to "Listings", dashboard_path %></li>
+	<li><%= link_to "images", images_path %></li>
+	<li><%= link_to "States", states_path %></li>
+	<li><%= link_to "Categories", categories_path %></li>
+	<li><%= link_to "Subcategories", subcategories_path %></li>
+  <% end %>
+</ul>

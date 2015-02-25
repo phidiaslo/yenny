@@ -1,0 +1,8 @@
+<div class="search-box">
+<%= search_form_for @search, url: search_listings_path, html: { method: :post } do |f| %>
+  <div class="form-inline">
+     <%= f.text_field :name_or_user_username_cont, placeholder: 'Find items or sellers', class: "form-control input-sm green-border" %>
+     <%= f.submit "Search", class: "btn btn-sm btn-primary green-border" %>
+  </div>
+<% end %>
+</div>

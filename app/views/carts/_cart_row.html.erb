@@ -1,0 +1,36 @@
+<div class="cart-row">
+  <div class="row">
+    <div class="col-md-3">
+      <% @images.where(listing_id: listing).first(1).each do |image| %>
+          <%= link_to image_tag(image.photo.url), listing %>
+        <% end %>
+    </div>
+    <div class="col-md-9">
+      <%= simple_form_for order_item do |f| %>
+      <h4><%= listing.name %></h4>
+      <p>Option: <%= order_item.choice %></p>
+      <p>Price: <%= number_to_currency order_item.unit_price %></p>
+      
+      <div class="row">
+        <div class="col-md-2">
+          <p class="padding-5">Quantity:</p>
+        </div>
+        <div class="col-md-2 no-left-right-pad">
+        <div class="form-group">
+        <%= f.input :quantity, label: false, collection: (1..listing.quantity), value: order_item.quantity.to_i, include_blank: false, input_html: { class: "form-control input-sm"} %> 
+        </div>
+        </div>
+        <div class="col-md-8 no-left-right-pad">
+        <%= f.submit "Update Qty", class: "btn btn-link" %>|<%= link_to "Remove item", order_item, { data: { confirm: "Are you sure you want to delete this item from your cart?" }, method: :delete, class: "btn btn-link" }%>
+        </div>
+      </div>
+        <%= f.hidden_field :listing_id, value: listing.id %>
+      <p>Ship to: <%= order_item.country %></p>
+      <p>Shipping cost: <%= number_to_currency order_item.shipping_price %></p>
+      <p>Subtotal: <%= number_to_currency order_item.total_price %> + <%= number_to_currency order_item.total_shipping %></p>
+
+
+      <% end %>
+    </div>    
+  </div>
+</div>

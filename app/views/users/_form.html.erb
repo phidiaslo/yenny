@@ -1,0 +1,56 @@
+<%= simple_form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label>Profile Picture</label>
+  <div class="form-group">
+    <%= image_tag @user.avatar.url(:thumb), class: "width-69 img-circle" %> 
+    <%= f.input :avatar, label: false, input_html: {class: "upload-new-avatar"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :first_name, required: true, input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :last_name, required: true, input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :gender, required: true, collection: User::GENDER_SELECT, input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :role, required: true, collection: User::ROLE_SELECT, input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :country, label: 'Current Country', priority: [ "Malaysia" ], required: true, input_html: {class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group form-inline">
+    <label>Birthday</label>
+      <%= f.input :birthday, as: :date, start_year: Date.today.year - 18,
+                                end_year: Date.today.year - 80, 
+                                order: [:day, :month, :year], label: false, required: true, input_html: { :item_wrapper_class => 'inline', class: 'form-control' } %>
+    </div>
+
+
+  <div class="form-group">
+    <label>About</label> <small>Tell people a little bit about you</small>
+    <%= f.input :about, label: false, input_html: {rows: 5, class: "form-control input-sm"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit, "Save Changes", class: "btn btn-primary" %>
+  </div>
+<% end %>
